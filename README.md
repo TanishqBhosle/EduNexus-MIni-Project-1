@@ -156,10 +156,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **EduNexus Team** - *Initial work*
 
-## 🙏 Acknowledgments
+## 📱 Screenshots
 
-- React.js community
-- Node.js community
-- MongoDB documentation
-- Socket.io documentation
 
