@@ -80,10 +80,6 @@ REACT_APP_SOCKET_URL=http://localhost:5000
 - Email: student@edunexus.com
 - Password: student123
 
-## 📱 Screenshots
-
-*Screenshots will be added after deployment*
-
 ## 🚀 Deployment
 
 - **Frontend**: Vercel (Create React App)
