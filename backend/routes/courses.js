@@ -52,6 +52,25 @@ router.get('/', async (req, res) => {
   }
 });
 
+// @route   GET /api/courses/my-courses
+// @desc    Get user's courses (enrolled or created)
+// @access  Private
+router.get('/my-courses', auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id)
+      .populate('enrolledCourses')
+      .populate('createdCourses');
+
+    res.json({
+      enrolledCourses: user.enrolledCourses,
+      createdCourses: user.createdCourses
+    });
+  } catch (error) {
+    console.error('Get my courses error:', error);
+    res.status(500).json({ message: 'Server error fetching courses' });
+  }
+});
+
 // @route   GET /api/courses/:id
 // @desc    Get single course
 // @access  Public
@@ -208,25 +227,6 @@ router.post('/:id/enroll', auth, authorize('student'), async (req, res) => {
   } catch (error) {
     console.error('Enroll course error:', error);
     res.status(500).json({ message: 'Server error enrolling in course' });
-  }
-});
-
-// @route   GET /api/courses/my-courses
-// @desc    Get user's courses (enrolled or created)
-// @access  Private
-router.get('/my-courses', auth, async (req, res) => {
-  try {
-    const user = await User.findById(req.user.id)
-      .populate('enrolledCourses')
-      .populate('createdCourses');
-
-    res.json({
-      enrolledCourses: user.enrolledCourses,
-      createdCourses: user.createdCourses
-    });
-  } catch (error) {
-    console.error('Get my courses error:', error);
-    res.status(500).json({ message: 'Server error fetching courses' });
   }
 });
 

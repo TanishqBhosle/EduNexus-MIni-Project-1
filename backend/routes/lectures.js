@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
-const { body } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 const Lecture = require('../models/Lecture');
 const Course = require('../models/Course');
 const { auth, authorize } = require('../middleware/auth');

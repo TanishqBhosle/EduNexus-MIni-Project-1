@@ -86,9 +86,40 @@ REACT_APP_SOCKET_URL=http://localhost:5000
 
 ## 🚀 Deployment
 
-- **Frontend**: Deployed on Vercel
-- **Backend**: Deployed on Render
+- **Frontend**: Vercel (Create React App)
+- **Backend**: Render (Node/Express + Socket.io)
 - **Database**: MongoDB Atlas
+
+### Backend on Render
+- Create Web Service → select this repo
+- Root Directory: `backend`
+- Build Command: `npm install`
+- Start Command: `npm start`
+- Environment Variables:
+  - `MONGODB_URI=YOUR_ATLAS_CONNECTION_STRING`
+  - `JWT_SECRET=GENERATE_A_SECURE_RANDOM_STRING`
+  - `CLOUDINARY_CLOUD_NAME=...`
+  - `CLOUDINARY_API_KEY=...`
+  - `CLOUDINARY_API_SECRET=...`
+  - `CLIENT_URL=https://<your-vercel-domain>.vercel.app`
+  - `NODE_ENV=production`
+- After deploy, copy the service URL (e.g. `https://<service>.onrender.com`).
+
+### Frontend on Vercel
+- Import Project → select this repo
+- Root Directory: `frontend`
+- Framework Preset: Create React App
+- Build Command: `npm run build`
+- Output Directory: `build`
+- Environment Variables (Production):
+  - `REACT_APP_API_URL=https://<your-render-service>.onrender.com/api`
+  - `REACT_APP_SOCKET_URL=https://<your-render-service>.onrender.com`
+- Deploy, then note your Vercel domain (e.g. `https://<app>.vercel.app`).
+
+### Post-deploy
+- Ensure Render `CLIENT_URL` matches your final Vercel domain (no trailing slash). Redeploy backend if changed.
+- The frontend reads API base from `REACT_APP_API_URL` and Socket.io URL from `REACT_APP_SOCKET_URL`.
+- Test: login/register, course lists, uploads (Cloudinary), and real-time chat (Socket.io).
 
 ## 📝 API Endpoints
 
